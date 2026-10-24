@@ -1,0 +1,8 @@
+[Unit]
+Description=haygoodsrv health watchdog
+After=network-online.target wyze-plug-api.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/haygoodsrv-watchdog/watchdog.sh

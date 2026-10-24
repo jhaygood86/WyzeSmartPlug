@@ -1,0 +1,21 @@
+[Unit]
+Description=Wyze Plug API
+After=network-online.target warp-svc.service
+Wants=network-online.target
+
+[Service]
+User=wyze
+Group=wyze
+WorkingDirectory=/opt/wyze-plug-api
+ExecStart=/opt/wyze-plug-api/WyzePlugApi
+EnvironmentFile=/etc/wyze-plug-api.env
+Environment=ASPNETCORE_URLS=http://127.0.0.1:5000
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
