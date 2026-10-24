@@ -39,7 +39,7 @@ if [ -n "$cockpit_code" ] && [ "$cockpit_code" != "000" ]; then cockpit_ok=1; el
 
 # Check B: SSH in and run basic health checks. Failing to connect/run is a hard failure;
 # problems the health script reports (exit 1) are logged as warnings only.
-SSH_OPTS=(-i "$SSH_KEY" -o BatchMode=yes -o ConnectTimeout=10 -o ServerAliveInterval=5 -o ServerAliveCountMax=2
+SSH_OPTS=(-i "$SSH_KEY" -o BatchMode=yes -o LogLevel=ERROR -o ConnectTimeout=10 -o ServerAliveInterval=5 -o ServerAliveCountMax=2
           -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile="$KNOWN_HOSTS")
 ssh_out=$(timeout 60 ssh "${SSH_OPTS[@]}" "${SSH_USER}@${TARGET_HOST}" 'bash -s' < "$REMOTE_HEALTH" 2>&1)
 ssh_rc=$?
